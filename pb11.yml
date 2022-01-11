@@ -1,5 +1,5 @@
 - name: installing a tomcat
-  hosts: 65.2.83.148
+  hosts: all
   become: true
   tasks:
     - name: install java
@@ -10,13 +10,13 @@
     - name: download tomcat
       get_url:
         url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.73/bin/apache-tomcat-8.5.73.tar.gz
-        dest: /root/opt
-        
+        dest: /root/webapp
+
     - name: extract packages
       unarchive:
-        src: /root/opt/apache-tomcat-8.5.73.tar.gz
-        dest: /root/opt/
+        src: /root/webapp/apache-tomcat-8.5.73.tar.gz
+        dest: /root/webapp/
         remote_src: yes
 
     - name: start tomcat services
-      shell: nohup /root/opt/apache-tomcat-8.5.73/bin.startup.sh
+      shell: nohup /root/webapp/apache-tomcat-8.5.73/bin/startup.sh
