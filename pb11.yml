@@ -1,5 +1,5 @@
 - name: installing a tomcat
-  hosts: all
+  hosts: 65.2.83.148
   become: true
   tasks:
     - name: install java
