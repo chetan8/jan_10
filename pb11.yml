@@ -1,9 +1,22 @@
----
-- name: deploying a war on the webserver
-  hosts: 65.2.83.148
+- name: installing a tomcat
+  hosts: all
   become: true
   tasks:
-  - name: copying a war file
-    copy:
-      src: /var/lib/jenkins/workspace/demo-1/target/jan_10_10.war
-      dest: /root/webapp
+    - name: install java
+      yum:
+        name: java
+        state: latest
+
+    - name: download tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.73/bin/apache-tomcat-8.5.73.tar.gz
+        dest: /root/opt
+        
+    - name: extract packages
+      unarchive:
+        src: /root/opt/apache-tomcat-8.5.73.tar.gz
+        dest: /root/opt/
+        remote_src: yes
+
+    - name: start tomcat services
+      shell: nohup /root/opt/apache-tomcat-8.5.73/bin.startup.sh
