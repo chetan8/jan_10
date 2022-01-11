@@ -1,0 +1,9 @@
+---
+- name: deploying a war on the webserver
+  hosts: 65.2.83.148
+  become: true
+  tasks:
+  - name: copying a war file
+    copy:
+      src: /var/lib/jenkins/workspace/demo-1/target/jan_10_10.war
+      dest: /root/webapp
