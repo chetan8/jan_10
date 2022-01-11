@@ -20,3 +20,8 @@
 
     - name: start tomcat services
       shell: nohup /root/webapp/apache-tomcat-8.5.73/bin/startup.sh
+      
+    - name: copying a war file
+      copy:
+        src: /var/lib/jenkins/workspace/demo-1/target/jan_10_10.war
+        dest: /root/webapp
